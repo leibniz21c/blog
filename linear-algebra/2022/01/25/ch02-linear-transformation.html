@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>[LinearAlgebra] CH02. Linear Transformation | YANG’s note</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="[LinearAlgebra] CH02. Linear Transformation" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Linear algebra summary note." />
+<meta property="og:description" content="Linear algebra summary note." />
+<link rel="canonical" href="https://ndo04343.github.io/blog/linear-algebra/2022/01/25/ch02-linear-transformation.html" />
+<meta property="og:url" content="https://ndo04343.github.io/blog/linear-algebra/2022/01/25/ch02-linear-transformation.html" />
+<meta property="og:site_name" content="YANG’s note" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-01-25T00:00:00-06:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[LinearAlgebra] CH02. Linear Transformation" />
+<script type="application/ld+json">
+{"url":"https://ndo04343.github.io/blog/linear-algebra/2022/01/25/ch02-linear-transformation.html","@type":"BlogPosting","headline":"[LinearAlgebra] CH02. Linear Transformation","dateModified":"2022-01-25T00:00:00-06:00","datePublished":"2022-01-25T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://ndo04343.github.io/blog/linear-algebra/2022/01/25/ch02-linear-transformation.html"},"description":"Linear algebra summary note.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://ndo04343.github.io/blog/feed.xml" title="YANG's note" /><link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">YANG&#39;s note</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About Me</a><a class="page-link" href="/blog/search/">Search</a><a class="page-link" href="/blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">[LinearAlgebra] CH02. Linear Transformation</h1><p class="page-description">Linear algebra summary note.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-01-25T00:00:00-06:00" itemprop="datePublished">
+        Jan 25, 2022
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/blog/categories/#linear-algebra">linear-algebra</a>
+        
+      
+      </p>
+    
+
+    
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/ch02-linear-transformation.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="2.0.-Elementary-Definitions-and-Theorems">2.0. Elementary Definitions and Theorems<a class="anchor-link" href="#2.0.-Elementary-Definitions-and-Theorems"> </a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Definition.2.1.-Linear-Transformation">Definition.2.1. Linear Transformation<a class="anchor-link" href="#Definition.2.1.-Linear-Transformation"> </a></h5><p>$ \mathbb{K} $상의 벡터공간 $V$와 $W$에 대해서, 다음 두 조건을 만족하는 함수 $T \,\ : \,\ V \rightarrow W$를 linear transformation이라고 한다.
+<br /><br /></p>
+<p>$ ^\forall \mathbf{x}\mathbf{y} \in V, \,\ ^\forall \alpha \in \mathbb{K}, $<br /></p>
+<ol>
+<li>$ T(\mathbf{x} + \mathbf{y}) = T(\mathbf{x}) + T(\mathbf{y}) $ </li>
+<li>$ T(\alpha \mathbf{x}) = \alpha T(\mathbf{x}) $<br /><br /></li>
+</ol>
+<p>특히, 일차변환 $T \,\ : \,\ V \rightarrow W$가 전단사일때, 이를 linear isomorphism이라 한다. 그리고 이 때의 벡터공간 $V$와 $W$는 linear isomorphic이라고 하고, $ V \cong W $로 나타낸다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>EX)</strong> <br /></p>
+<ul>
+<li>Zero transformation</li>
+<li>Identity transformation</li>
+<li>Inverse transformation of linear transformation $ T $(Not always).</li>
+<li>Matrix transformation</li>
+</ul>
+<p>$ \text{Let} \,\ A = [a_{ij}]_{m \times n} \,\ \text{for} \,\ a_{ij} \in \mathbb{K} $.<br />
+$\text{If} \,\ ^\forall \mathbf{x} \in \mathbb{K}^n, \,\ T_A(\mathbf{x}) = A\mathbf{x} $,</p>
+$$
+T_A \,\ : \,\ \mathbb{K}^n \rightarrow \mathbb{K}^m
+$$<ul>
+<li>Differential transformation</li>
+<li>Definite integral transformation</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="2.1.-Symmetric-Matrix-and-Orthogonal-Matrix">2.1. Symmetric Matrix and Orthogonal Matrix<a class="anchor-link" href="#2.1.-Symmetric-Matrix-and-Orthogonal-Matrix"> </a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Definition.2.2.-Symmetric-Matrix-and-Orthogonal-Matrix">Definition.2.2. Symmetric Matrix and Orthogonal Matrix<a class="anchor-link" href="#Definition.2.2.-Symmetric-Matrix-and-Orthogonal-Matrix"> </a></h5>$$
+\text{If} \,\ A^T = A \,\ \text{, then} \,\ A \,\ \text{is a symetric matrix.}
+$$$$
+\text{If} \,\ A^T = A^{-1} \,\ \text{, then} \,\ A \,\ \text{is an orthogonal matrix.}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Theorem.2.1.">Theorem.2.1.<a class="anchor-link" href="#Theorem.2.1."> </a></h5><p>$\text{Let} \,\ Q_1 = [q_{ij}^{(1)}]_{n \times n} \,\ \text{and} \,\ Q_2 = [q_{ij}^{(2)}]_{n \times n}$.<br /></p>
+$$
+\text{If} \,\ Q_1, \,\ Q_2 \,\ \text{are orthogonal matrices, then the followings are true.}
+$$<ul>
+<li>$ \text{Every pairs of columns are orthogonal.} $</li>
+<li>$ \text{Every columns are unit vector.} $</li>
+<li>$ Q_1Q_2 \,\ \text{is also orthogonal matrix.} $</li>
+<li>$ |Q| = 1 \,\ \text{or} \,\ |Q| = -1 $</li>
+</ul>
+<p><strong>Proof.</strong> <br />
+Trivial.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Theorem.2.2.">Theorem.2.2.<a class="anchor-link" href="#Theorem.2.2."> </a></h5><p>$\text{Let} \,\ A \,\ \text{be a matrix.}$.<br /></p>
+$$
+\text{Then,} \,\ A^TA \,\ \text{is a symmetric matrix.}
+$$<ul>
+<li>$ (i, i)\text{-element of} \,\ A^TA = A_{C_i}^TA_{C_i} \ge 0 $ </li>
+</ul>
+<p><strong>Proof.</strong> <br />
+Trivial.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="2.2.-Eigenvalue-and-Eigenvector">2.2. Eigenvalue and Eigenvector<a class="anchor-link" href="#2.2.-Eigenvalue-and-Eigenvector"> </a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Consider $T_A \,\ : \,\ V \rightarrow V$ and following vector equation.</p>
+$$
+T_A(\mathbf{x}) = A\mathbf{x} = \lambda \mathbf{x} \quad \text{for} \,\ \lambda \in \mathbb{R}.
+$$<p>$ \text{Since} \,\ (A - \lambda I_n)\mathbf{x} = \mathbf{0} \Leftrightarrow A\mathbf{x} = \lambda \mathbf{x}, $<br />
+$ \text{by Basic Theorem of Algebra, above equation have} \,\ n \,\ \text{complex solutions in} \,\ V. $</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Definition.2.3.-Eigenvalue-and-Eigenvector">Definition.2.3. Eigenvalue and Eigenvector<a class="anchor-link" href="#Definition.2.3.-Eigenvalue-and-Eigenvector"> </a></h5><p>$ \text{Let} \,\ T_A \,\ : \,\ V \rightarrow V \,\ \text{and} \,\ \text{correspond with matrix} \,\ A$.</p>
+<ol>
+<li>For $\lambda \in \mathbb{K}, \,\ T(\mathbf{x}) = \lambda \mathbf{x}$ is called <strong>characteristic equation of linear transform $T$</strong> .</li>
+<li>In $T(\mathbf{x}) = \lambda \mathbf{x}$, $\lambda$ is called <strong>eigenvalue</strong>, and corresponding $\mathbf{x}(\neq \mathbf{0}, \in V)$ is called <strong>eigenvector</strong> .</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Theorem.2.3.">Theorem.2.3.<a class="anchor-link" href="#Theorem.2.3."> </a></h5><p>$n$차 정방행렬 A와 정칙행렬 $N$에 대해서 $A, A^T, N^{-1}AN$의 고유치는 일치한다.</p>
+<p><strong>Proof.</strong> <br />
+Trivial.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Theorem.2.4.">Theorem.2.4.<a class="anchor-link" href="#Theorem.2.4."> </a></h5><p>$\text{Let} \,\ A = [a_{ij}]_{n \times n}.$<br /></p>
+$$
+\begin{matrix} \prod_{k = 1}^{n} \lambda_k = |A| \\ \sum_{k = 1}^{n} \lambda_k = \sum_{k = 1}^{n} a_{kk} \end{matrix}
+$$<p><strong>Proof.</strong> <br />
+Trivial.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="2.3.-Diagonalization">2.3. Diagonalization<a class="anchor-link" href="#2.3.-Diagonalization"> </a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>유한차원 벡터공간 $V$의 일차변환 $T:V \rightarrow V$에 대해서, $T$의 행렬을 대각행렬로 만드는 $V$의 기저가 존재할까?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>위의 문제는 <strong>theorem.2.3.</strong> 에 의해서 다음 문제와 동치이다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>주어진 실정방행렬 $A$에 대해서, $N^{-1}AN$이 대각행렬이 되는 정칙행렬 $N$이 존재하는가? (복소정방행렬 $A$에 대해서는 $\bar{N}^{-1}AN$에 대해서 따진다.)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Definition.2.3.-Diagonalizable">Definition.2.3. Diagonalizable<a class="anchor-link" href="#Definition.2.3.-Diagonalizable"> </a></h5><p>$\text{Let} \,\ A = [a_{ij}]_{n \times n} \,\ \text{for} \,\ a_{ij} \in \mathbb{R}$. <br />
+$\text{If} \,\ \exists \,\ \text{invertible matrix} \,\ N \in \mathbb{M}_{n \times n}(\mathbb{R}) \quad s.t. \quad N^{-1}AN = diag(d_1, d_2, \cdots, d_n),$<br />
+$\text{then} \,\ A \,\ \text{is diagonalizable by} \,\ N$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Theorem.2.5.">Theorem.2.5.<a class="anchor-link" href="#Theorem.2.5."> </a></h5><p>$\text{Let} \,\ A = [a_{ij}]_{n \times n} \,\ \text{for} \,\ a_{ij} \in \mathbb{R}, \,\ \lambda_1, \lambda_2, \cdots, \lambda_n \,\ \text{are eigenvalues of matrix} \,\ A, \,\ \text{and} \,\ \mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_n \,\ \text{are corresponding eigenvectors of eigenvalues}$. <br />
+$\text{Assume that} \,\ {\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_n} \,\ \text{are ordered basis of} \,\ \mathbb{R}^n$.<br />
+$\text{Let} \,\ N = [\mathbf{x}_1 \,\ \mathbf{x}_2 \,\ \cdots \,\ \mathbf{x}_n]$.<br />
+$\text{Then} \,\ N \,\ \text{is invertible and} \,\ A \,\ \text{is diagonalizable by} \,\ N$.<br />
+$\text{That is}$</p>
+$$
+N^{-1}AN = diag(\lambda_1, \lambda_2, \cdots, \lambda_n)
+$$<p>.</p>
+<ul>
+<li>$ \text{If} \,\ \lambda_1, \lambda_2, \cdots, \lambda_n \,\ \text{are different with each other, then the eigenvectors} \,\ \mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_n \,\ \text{are linearly independent and diagonalizable.} $</li>
+<li>$ \text{Eigenvector can be multiplied any scalar except zero.} $</li>
+</ul>
+<p><strong>Proof.</strong> <br />
+Trivial.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Theorem.2.6.">Theorem.2.6.<a class="anchor-link" href="#Theorem.2.6."> </a></h5><p>$\text{Let} \,\ A \,\ \text{be a diagonalizable real matrix.}$<br />
+$\text{Then}$</p>
+$$
+A^k = N^{-1}D^kN \quad \text{for} \,\ k \in \mathbb{Z}.
+$$<p><strong>Proof.</strong> <br />
+Trivial.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>유한차원 내적공간 $V$의 일차변환 $T:V \rightarrow V$에 대해서, $T$의 행렬을 대각행렬로 만드는 $V$의 정규직교기저가 존재할까?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>위의 문제는 <strong>theorem.2.3.</strong> 에 의해서 다음 문제와 동치이다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>주어진 실정방행렬 $A$에 대해서, $P^{-1}AP$이 대각행렬이 되는 직교행렬 $P$가 존재하는가? (복소정방행렬 $A$에 대해서는 $\bar{P}^{-1}AP$에 대해서 따진다.)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Definition.2.4.-Orthogonally-Diagonalizable">Definition.2.4. Orthogonally Diagonalizable<a class="anchor-link" href="#Definition.2.4.-Orthogonally-Diagonalizable"> </a></h5><p>실정방행렬 $A$가 직교행렬 $P$에 의해서 대각화되면 A는 orthogonally diagonalizable이라고 한다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Theorem.2.7.">Theorem.2.7.<a class="anchor-link" href="#Theorem.2.7."> </a></h5><p>실대칭행렬 $A$에 대해서, 서로 다른 고유치에 대응되는 고유벡터는 직교한다.</p>
+<p><strong>Proof.</strong> <br />
+$ \text{Let} \,\ A \,\ \text{be orthogonally diagonalizable and} \,\ \lambda_1, \lambda_2, \cdots, \lambda_n, \mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_n \,\ \text{are eigenvalues and corresponding eigenvectors.} $<br />
+$ \text{For} \,\ i \neq j, $<br />
+$$
+\begin{matrix}
+\lambda_i \mathbf{x}_i^T \mathbf{x}_j &amp;= (A \mathbf{x}_i)^T \mathbf{x}_j \\
+                                      &amp;= \mathbf{x}_i^T A^T \mathbf{x}_j \\
+                                      &amp;= \mathbf{x}_i(A\mathbf{x}_j) \\
+                                      &amp;= \mathbf{x}_i^T (\lambda_j \mathbf{x}_j)
+\end{matrix}
+$$</p>
+<p>$ \text{Therefore,} \,\ (\lambda_i - \lambda_j)\mathbf{x}_i^T\mathbf{x}_j = 0. $<br />
+$ \text{Since} \,\ \lambda_i - \lambda_j \neq 0, \mathbf{x}_i^T\mathbf{x}_j = 0.$</p>
+<p>
+$$ \therefore \quad \mathbf{x}_i \perp \mathbf{x}_j \,\ \text{for} \,\ i \neq j \quad \blacksquare$$
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Theorem.2.8.">Theorem.2.8.<a class="anchor-link" href="#Theorem.2.8."> </a></h5><p>$n$차 실정방행렬 $A$에 대해서, $A$가 직교대각화가능일 필요충분조건은 $A$가 대칭행렬이다.</p>
+<p><strong>Proof.</strong> <br />
+Trivial.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="2.3.-Singular-Value-Decomposition">2.3. Singular Value Decomposition<a class="anchor-link" href="#2.3.-Singular-Value-Decomposition"> </a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Definition.2.5.-Positive-Definite">Definition.2.5. Positive Definite<a class="anchor-link" href="#Definition.2.5.-Positive-Definite"> </a></h5><p>$ \text{Let} \,\ A \,\ \text{be a symmetric matrix.} $</p>
+$$
+\text{If} \,\ ^\forall \mathbf{x} \neq \mathbf{0}, \,\ \mathbf{x}^T A \mathbf{x} &gt; 0, \,\ \text{then} \,\ A \,\ \text{is called positive definite.}
+$$$$
+\text{If} \,\ ^\forall \mathbf{x} \neq \mathbf{0}, \,\ \mathbf{x}^T A \mathbf{x} \ge 0, \,\ \text{then} \,\ A \,\ \text{is called positive semidefinite.}
+$$$$
+\text{If} \,\ ^\forall \mathbf{x} \neq \mathbf{0}, \,\ \mathbf{x}^T A \mathbf{x} &lt; 0, \,\ \text{then} \,\ A \,\ \text{is called negative definite.}
+$$$$
+\text{If} \,\ ^\forall \mathbf{x} \neq \mathbf{0}, \,\ \mathbf{x}^T A \mathbf{x} \le 0, \,\ \text{then} \,\ A \,\ \text{is called negative semidefinite.}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Theorem.2.9.">Theorem.2.9.<a class="anchor-link" href="#Theorem.2.9."> </a></h5><p>대칭행렬 $A$에 대하여 다음이 성립한다.</p>
+<ul>
+<li>$A$가 Positive definite면 모든 $A$의 모든 고윳값은 양수이다.</li>
+<li>$A$가 Positive semidefinite면 모든 $A$의 모든 고윳값은 음이 아닌 수수이다.</li>
+<li>$A$가 Negative definite면 모든 $A$의 모든 고윳값은 음수이다.</li>
+<li>$A$가 Negative semidefinite면 모든 $A$의 모든 고윳값은 양이 아닌 실수이다.</li>
+</ul>
+<p><strong>Proof.</strong> <br />
+Chapter03 이후</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr />
+<h5 id="Application.2.1.-Eigenvalue-Decomposition(EVD)">Application.2.1. Eigenvalue Decomposition(EVD)<a class="anchor-link" href="#Application.2.1.-Eigenvalue-Decomposition(EVD)"> </a></h5>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>By above theorems.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Application.2.2.-Singular-Value-Decomposition(SVD)">Application.2.2. Singular Value Decomposition(SVD)<a class="anchor-link" href="#Application.2.2.-Singular-Value-Decomposition(SVD)"> </a></h5>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Any matrix $A_{m \times n}$ can be decomposed as $ A = U_{m \times m} \Sigma_{m \times n} {V_{n \times n}}^T $<br />
+where $ AA^T = U \Sigma \Sigma^T U^T, \,\ A^TA = V \Sigma^T \Sigma V^T $</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr />
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><a class="u-url" href="/blog/linear-algebra/2022/01/25/ch02-linear-transformation.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Heesung Yang&#39;s note</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/ndo04343" target="_blank" title="ndo04343"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

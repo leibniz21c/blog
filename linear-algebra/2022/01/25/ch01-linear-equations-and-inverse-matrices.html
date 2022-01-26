@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>[LinearAlgebra] CH01. Linear Equations and Inverse Matrices | YANG’s note</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="[LinearAlgebra] CH01. Linear Equations and Inverse Matrices" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Linear algebra summary note." />
+<meta property="og:description" content="Linear algebra summary note." />
+<link rel="canonical" href="https://ndo04343.github.io/blog/linear-algebra/2022/01/25/ch01-linear-equations-and-inverse-matrices.html" />
+<meta property="og:url" content="https://ndo04343.github.io/blog/linear-algebra/2022/01/25/ch01-linear-equations-and-inverse-matrices.html" />
+<meta property="og:site_name" content="YANG’s note" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-01-25T00:00:00-06:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[LinearAlgebra] CH01. Linear Equations and Inverse Matrices" />
+<script type="application/ld+json">
+{"url":"https://ndo04343.github.io/blog/linear-algebra/2022/01/25/ch01-linear-equations-and-inverse-matrices.html","@type":"BlogPosting","headline":"[LinearAlgebra] CH01. Linear Equations and Inverse Matrices","dateModified":"2022-01-25T00:00:00-06:00","datePublished":"2022-01-25T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://ndo04343.github.io/blog/linear-algebra/2022/01/25/ch01-linear-equations-and-inverse-matrices.html"},"description":"Linear algebra summary note.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://ndo04343.github.io/blog/feed.xml" title="YANG's note" /><link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">YANG&#39;s note</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About Me</a><a class="page-link" href="/blog/search/">Search</a><a class="page-link" href="/blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">[LinearAlgebra] CH01. Linear Equations and Inverse Matrices</h1><p class="page-description">Linear algebra summary note.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-01-25T00:00:00-06:00" itemprop="datePublished">
+        Jan 25, 2022
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      8 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/blog/categories/#linear-algebra">linear-algebra</a>
+        
+      
+      </p>
+    
+
+    
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/ch01-linear-equations-and-inverse-matrices.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="1.0.-Elementary-Definitions-and-Theorems">1.0. Elementary Definitions and Theorems<a class="anchor-link" href="#1.0.-Elementary-Definitions-and-Theorems"> </a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>이 노트에서 사용하는 수학 표기는 <a href="https://ndo04343.github.io/blog/math/math">표기법</a>을 따른다. </li>
+<li>기본적인 행렬의 연산과 성질들은 생략한다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Definition.1.1.-Matrix">Definition.1.1. Matrix<a class="anchor-link" href="#Definition.1.1.-Matrix"> </a></h5><p>임의의 자연수 $m$과 $n$에 대하여 $mn$개의 수 $(a_{ij} \in \mathbb{K}, \,\ i = 1, 2, \cdots, m, \,\ j = 1, 2, \cdots, n)$를 다음과 같이 배열한 도식(diagram) $A$를 $m \times n$ 행렬(matrix)이라고 한다.</p>
+$$
+A = \begin{bmatrix}
+a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1j} &amp; \cdots &amp; a_{1n} \\
+a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2j} &amp; \cdots &amp; a_{2n} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp;  &amp; \vdots \\
+a_{i1} &amp; a_{i2} &amp; \cdots &amp; a_{ij} &amp; \cdots &amp; a_{in} \\
+\vdots &amp; \vdots &amp;  &amp; \vdots &amp; \ddots &amp; \vdots \\
+a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mj} &amp; \cdots &amp; a_{mn} \\
+\end{bmatrix}
+$$<p>행렬 $A$를 간단히 $A = [a_{ij}]$ 또는 $A = [a_{ij}]_{m \times n}$과 같이 나타낸다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>이 글에서 행렬과 관련된 기본 정의와 정리들은 위의 표기를 따른다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="1.1.-System-of-Linear-Equations">1.1. System of Linear Equations<a class="anchor-link" href="#1.1.-System-of-Linear-Equations"> </a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Definition.1.2.-Augmented-Matrices-and-Coefficient-Matrices">Definition.1.2. Augmented Matrices and Coefficient Matrices<a class="anchor-link" href="#Definition.1.2.-Augmented-Matrices-and-Coefficient-Matrices"> </a></h5><p>$n$개의 미지수 $x_1, \,\ x_2, \,\ \cdots, \,\ x_n$에 관한 연립일차방정식</p>
+$$
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1 \\
+a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = b_2 \\
+\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\; \vdots  \\
+a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m \\
+\end{cases},
+$$<p>에 대하여</p>
+$$
+A = \begin{bmatrix}
+a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\
+a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn} \\
+\end{bmatrix}_{m \times n}, \mathbf{x} = \begin{bmatrix}
+x_{1} \\
+x_{2} \\
+\vdots \\
+x_{n} \\
+\end{bmatrix}_{n \times 1}, \text{and} \,\ \mathbf{b} = \begin{bmatrix}
+b_{1} \\
+b_{2} \\
+\vdots \\
+b_{m} \\
+\end{bmatrix}_{m \times 1}
+$$<p>로 둘때, 연립일차방정식을 행렬을 써서 나타내면</p>
+$$
+A\mathbf{x} = \mathbf{b}
+$$<p>이다. \
+\
+이때, 연립일차방정식에  대응되는 행렬 $[A \quad \mathbf{b}]_{m \times (n + 1)}$를 주어진 연립일차방정식의 첨가행렬(Augmented matrix)이라고 하고 $A$를 연립일차방정식의 계수행렬(Coeffficient matrix)이라고 한다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Theorem.1.1.">Theorem.1.1.<a class="anchor-link" href="#Theorem.1.1."> </a></h5><p>$A = [a_{ij}]_{n \times n}, \text{and} \,\ B = [b_{ij}]_{n \times n}$에 대하여 다음이 성립한다.</p>
+$$
+\qquad (AB)^\top = B^\top A^\top
+$$<p><strong>Proof.</strong> <br />
+Trivial.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Theorem.1.2.">Theorem.1.2.<a class="anchor-link" href="#Theorem.1.2."> </a></h5><p>Let $A$ is invertible and have $n$-degree.</p>
+$$
+\qquad (A^\top)^{-1} = (A^{-1})^\top
+$$<p><strong>Proof.</strong> <br />
+Trivial.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Theorem.1.3.">Theorem.1.3.<a class="anchor-link" href="#Theorem.1.3."> </a></h5><p>Square matrix $A$에 대하여, 다음이 성립한다.</p>
+$$
+\text{(1)} \quad \text{If} \,\ [A \quad I] \cong_R [I \quad P], \,\ \text{then} \,\ P = A^{-1} \\
+\text{(2)} \quad \text{If} \,\ \begin{bmatrix} A \\ I \end{bmatrix} \cong_C \begin{bmatrix} I \\ P \end{bmatrix}, \,\ \text{then} \,\ P = A^{-1} \\
+$$<p><strong>Proof.</strong> <br />
+Trivial.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Theorem.1.4.">Theorem.1.4.<a class="anchor-link" href="#Theorem.1.4."> </a></h5><p>Square matrix $A, \,\ B, \,\ C$에 대하여, $A$가 가역행렬일때,</p>
+$$
+\text{If} \,\ [A \quad B] \cong_R [I \quad C], \,\ \text{then} \,\ C = A^{-1}B
+$$<p><strong>Proof.</strong> <br />
+Trivial.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Theorem.1.5.">Theorem.1.5.<a class="anchor-link" href="#Theorem.1.5."> </a></h5><p>$\text{If} \,\ A \,\ \text{and} \,\ B \,\ \text{are} \,\ n\text{-degree square matrices, then followings are true.} $</p>
+$$
+\text{(1)} \quad Tr(AB) = Tr(BA) \\
+\text{(2)} \quad Tr(PAP^{-1}) = Tr(A) \\
+$$<p><strong>Proof.</strong> <br />
+Trivial.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Definition.1.3.-Gauss-Jordan-Elimination-and-Gauss-Elimination">Definition.1.3. Gauss-Jordan Elimination and Gauss Elimination<a class="anchor-link" href="#Definition.1.3.-Gauss-Jordan-Elimination-and-Gauss-Elimination"> </a></h5><p>Forward substitution을 통해서 어떤 행렬을 ref(row echelon form)으로 변환하는 과정을 Gauss Elimination이라고 하고, <br />
+Back substitution까지 진행하여 어떤 행렬을 rref(reduced row echelon form으로 변환하는 과정을 Gauss-Jordan Elimination이라고 한다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Definition.1.4.-Matrix-Decomposition">Definition.1.4. Matrix Decomposition<a class="anchor-link" href="#Definition.1.4.-Matrix-Decomposition"> </a></h5><p>Matrix Decomposition은 어떤 Matrix를 여러 행렬들의 곱으로 표현하는 것을 의미한다. <br />
+이는 Computational convenience, analytic simplicity를 목적으로 가진다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr />
+<h5 id="Application.1.1.-LU-Decomposition">Application.1.1. LU Decomposition<a class="anchor-link" href="#Application.1.1.-LU-Decomposition"> </a></h5><p>$ \text{Let} \,\ m \times n \,\  \text{matrix} \,\ A.$<br />
+$ \text{By Gauss Elimination, We can get matrix} \,\ U. $<br />
+$ \text{Then} \,\ E_p \cdots E_1 A = U $<br />
+$ L = (E_p \cdots E_1)^{-1} $<br /><br /></p>
+<h5 id="Ex)">Ex)<a class="anchor-link" href="#Ex)"> </a></h5>$$
+A = 
+\begin{bmatrix}
+2 &amp; 4 &amp; -1 &amp; 5 &amp; -2 \\
+-4 &amp; -5 &amp; 3 &amp; -8 &amp; 1 \\
+2 &amp; -5 &amp; -4 &amp; 1 &amp; 8 \\
+-6 &amp; 0 &amp; 7 &amp; -3 &amp; 1 \\
+\end{bmatrix} 
+\cong
+\begin{bmatrix}
+2 &amp; 4 &amp; -1 &amp; 5 &amp; -2 \\
+0 &amp; 3 &amp; 1 &amp; 2 &amp; -3 \\
+0 &amp; -9 &amp; -3 &amp; -4 &amp; 10 \\
+0 &amp; 12 &amp; 4 &amp; 12 &amp; -5 \\
+\end{bmatrix} 
+\cong
+\begin{bmatrix}
+2 &amp; 4 &amp; -1 &amp; 5 &amp; -2 \\
+0 &amp; 3 &amp; 1 &amp; 2 &amp; -3 \\
+0 &amp; 0 &amp; 0 &amp; 2 &amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 4 &amp; 7 \\
+\end{bmatrix} 
+\cong
+\begin{bmatrix}
+2 &amp; 4 &amp; -1 &amp; 5 &amp; -2 \\
+0 &amp; 3 &amp; 1 &amp; 2 &amp; -3 \\
+0 &amp; 0 &amp; 0 &amp; 2 &amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 5 \\
+\end{bmatrix} = U
+$$$$
+L_{C_1} = \frac{1}{2} \begin{bmatrix} 2 \\ -4 \\ 2 \\ -6 \end{bmatrix}, \,\ 
+L_{C_2} = \frac{1}{3} \begin{bmatrix} 0 \\ 3 \\ -9 \\ 12 \end{bmatrix}, \,\ 
+L_{C_3} = \frac{1}{2} \begin{bmatrix} 0 \\ 0 \\ 2 \\ 4 \end{bmatrix}, \,\ 
+L_{C_4} = \frac{1}{5} \begin{bmatrix} 0 \\ 0 \\ 0 \\ 5 \end{bmatrix}. 
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+$$
+\text{Therefore, } \,\ L = 
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \\
+-2 &amp; 1 &amp; 0 &amp; 0 \\
+1 &amp; -3 &amp; 1 &amp; 0 \\
+-3 &amp; 4 &amp; 2 &amp; 1 \\
+\end{bmatrix} 
+$$<p>Suppose we have to solve $ A\mathbf{x} = \mathbf{b} $.<br />
+We can get $ A = LU $.<br />
+Then</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+$$
+L\mathbf{d} = \mathbf{b} \\
+U\mathbf{x} = \mathbf{d}
+$$
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">lu</span>
+
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="n">P</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">U</span> <span class="o">=</span> <span class="n">lu</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="c1"># P is permutating matrix(pivoting)</span>
+<span class="n">P</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">U</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(array([[0., 0., 0., 1.],
+        [0., 1., 0., 0.],
+        [0., 0., 1., 0.],
+        [1., 0., 0., 0.]]),
+ array([[ 1.        ,  0.        ,  0.        ,  0.        ],
+        [ 0.66666667,  1.        ,  0.        ,  0.        ],
+        [-0.33333333,  1.        ,  1.        ,  0.        ],
+        [-0.33333333, -0.8       , -0.        ,  1.        ]]),
+ array([[-6.00000000e+00,  0.00000000e+00,  7.00000000e+00,
+         -3.00000000e+00,  1.00000000e+00],
+        [ 0.00000000e+00, -5.00000000e+00, -1.66666667e+00,
+         -6.00000000e+00,  3.33333333e-01],
+        [ 0.00000000e+00,  0.00000000e+00, -8.88178420e-16,
+          6.00000000e+00,  8.00000000e+00],
+        [ 0.00000000e+00,  0.00000000e+00,  0.00000000e+00,
+         -8.00000000e-01, -1.40000000e+00]]))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr />
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="1.2.-Determinants-and-Inverse-Matrices">1.2. Determinants and Inverse Matrices<a class="anchor-link" href="#1.2.-Determinants-and-Inverse-Matrices"> </a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Theorem.1.6.">Theorem.1.6.<a class="anchor-link" href="#Theorem.1.6."> </a></h5><p>$n$차 정방행렬 $A = [a_{ij}]$에 대하여 $|A| = |A^\top|$</p>
+<p><strong>Proof.</strong> <br />
+Trivial.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Theorem.1.7.">Theorem.1.7.<a class="anchor-link" href="#Theorem.1.7."> </a></h5><p>$n$차 정방행렬 $A = [a_{ij}]$와 수 $k$에 대하여 
+$|kA| = k^n|A|$</p>
+<p><strong>Proof.</strong> <br />
+Trivial.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Theorem.1.8.">Theorem.1.8.<a class="anchor-link" href="#Theorem.1.8."> </a></h5><p>두 행렬의 곱의 행렬식은 각각의 행렬식의 곱과 같다.</p>
+<p><strong>Proof.</strong> <br />
+Trivial.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Definition.1.5.-Minor-Determinant-and-Cofactor">Definition.1.5. Minor Determinant and Cofactor<a class="anchor-link" href="#Definition.1.5.-Minor-Determinant-and-Cofactor"> </a></h5><p>$n$차 정방행렬 $A = [a_{ij}]$의 $i$번째 행과 $j$번째 열을 삭제하고 남은 $(n - 1)$차 정방행렬의 행렬식을 행렬 $A$의 $(i, j)-$Minor determinant이라고 하고 $M_{ij}$로 쓴다.<br />
+또한 $M_{ij}$에 부호 $(-1)^{i + j}$를 곱한 $(-1)^{i + j}M_{ij}$를 행렬 $A$의 $(i, j)$-Cofactor라고 하고 $C_{ij}$로 쓴다.<br />
+즉,</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+$$
+C_{ij} = (-1)^{i + j}M_{ij}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Definition.1.6.-Adjoint-Matrix-and-Cofactor-Matrix">Definition.1.6. Adjoint Matrix and Cofactor Matrix<a class="anchor-link" href="#Definition.1.6.-Adjoint-Matrix-and-Cofactor-Matrix"> </a></h5><p>$n$차 정방행렬 $A = [a_{ij}]$에서 $(i, j)$-Cofactor $C_{ij}$를 $(i, j)$ 성분으로 하는 행렬 $C = [C_{ij}]$의 전치행렬 $C^\top$를 $A$의 Adjoint matrix또는 여인수 행렬(Cofactor matrix)이라고 하며, $\text{adj}(A)$로 나타낸다.</p>
+$$
+\text{adj}(A) = [C_{ij}]^\top = 
+\begin{bmatrix}
+C_{11} &amp; C_{21} &amp; \cdots &amp; C_{n1} \\
+C_{12} &amp; C_{22} &amp; \cdots &amp; C_{n2} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+C_{1n} &amp; C_{2n} &amp; \cdots &amp; C_{nn} \\
+\end{bmatrix}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Theorem.1.9.">Theorem.1.9.<a class="anchor-link" href="#Theorem.1.9."> </a></h5><p>$n$차 정방행렬 $A = [a_{ij}]$에 대하여 다음이 성립한다. <br /><br /></p>
+<p>$\text{(1)} \quad \text{adj}(A)A = A\text{adj}(A) = |A|I_n$<br />
+$\text{(2)} \quad A$가 정칙행렬일 필요충분조건은 $|A| \neq 0$이다.<br />
+$\text{(3)} \quad A$가 정칙행렬이면 $A^{-1} = \frac{1}{|A|}\text{adj}(A)$이다.<br /></p>
+<p><strong>Proof.</strong> <br />
+Trivial.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Definition.1.7.-Minor-Determinant-and-Rank">Definition.1.7. Minor Determinant and Rank<a class="anchor-link" href="#Definition.1.7.-Minor-Determinant-and-Rank"> </a></h5><p>$m \times n$행렬 $A$의 $m - r$개 행과 $n - r$개의 열을 제거하고 남은 $r$차의 정방행렬에 대한 행렬식을 $A$의 $r$차의 소행렬식(Minor determinant)이라고 한다.<br />
+만약 $A$의 $r$차 소행렬식 중에서 $0$이 아닌 것이 적어도 하나 존재하고, $r$보다 큰 모든 $s(r &lt; s)$에 대하여 소행렬식이 모두 $0$일때, $r$을 행렬 $A$의 계수(rank)라고 하고
+$$
+\text{rank}(A) = r
+$$
+이라고 나타낸다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Theorem.1.10.">Theorem.1.10.<a class="anchor-link" href="#Theorem.1.10."> </a></h5><p>$\text{If} \,\ A \cong A^\prime, \,\ \text{then} \,\ \text{rank}(A) = \text{rank}(A^\prime)$</p>
+<p><strong>Proof.</strong> <br />
+Trivial.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Theorem.1.11.">Theorem.1.11.<a class="anchor-link" href="#Theorem.1.11."> </a></h5><p>행렬의 계수(rank)는 그 행렬의 rref에서 leading 1의 개수와 같다.</p>
+<p><strong>Proof.</strong> <br />
+Trivial.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="1.3.-Rank-and-Solution-of-System-of-Linear-Equation">1.3. Rank and Solution of System of Linear Equation<a class="anchor-link" href="#1.3.-Rank-and-Solution-of-System-of-Linear-Equation"> </a></h4><p>연립 일차 방정식의 해의 종류는 다음과 같다.</p>
+<ul>
+<li>No solution</li>
+<li>Particular solution(Only one solution)</li>
+<li>Infinitely many solutions</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Definition.1.8.-Homogeneous-System-of-Linear-Equations">Definition.1.8. Homogeneous System of Linear Equations<a class="anchor-link" href="#Definition.1.8.-Homogeneous-System-of-Linear-Equations"> </a></h5><p>미지수 $x_1, \,\ x_2, \,\ \cdots, \,\ x_n$에 관한 연립일차방정식</p>
+$$
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = 0 \\
+a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = 0 \\
+\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\; \vdots  \\
+a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = 0 \\
+\end{cases}
+$$<p>을 Homogeneous System of Linear Euation이라고 한다.</p>
+<p>Homogeneous System of Linear Equation은 다음과 같은 해를 가진다.</p>
+<ul>
+<li>Trivial solution</li>
+<li>Infinitely many solution including trivial solution.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Theorem.1.12.">Theorem.1.12.<a class="anchor-link" href="#Theorem.1.12."> </a></h5><p>$ \text{In homogeneous system of linear equations, if} \,\ m &lt; n, \,\ \text{then the system have infinitely many solutions.} $</p>
+<p><strong>Proof.</strong> <br />
+Trivial.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Theorem.1.13.">Theorem.1.13.<a class="anchor-link" href="#Theorem.1.13."> </a></h5><p>행렬 $A_{m \times n}, \,\ \mathbf{b}_{m \times 1} = [b_1 \,\ b_2 \,\ \cdots \,\ b_m]^\top, \,\ \mathbf{x}_{n \times 1} = [x_1 \,\ x_2 \,\ \cdots \,\ x_n]^\top$에 대하여 연립일차방정식 $A\mathbf{x} = \mathbf{b}$가 해를 가질 필요충분조건은</p>
+$$
+\text{rank}(A) = \text{rank}([A \quad B])
+$$<p>이며, $A\mathbf{x} = \mathbf{b}$가 해를 가지는 경우는 다음과 같다.</p>
+<ul>
+<li>$\text{If} \,\ \text{rank}(A) = \text{rank}([A \quad B]) = n, \,\ \text{then} \,\ A\mathbf{x} = \mathbf{b} \,\ \text{have a particular solution.}$</li>
+<li>$\text{If} \,\ \text{rank}(A) = \text{rank}([A \quad B]) &lt; n, \,\ \text{then} \,\ A\mathbf{x} = \mathbf{b} \,\ \text{have infinitely many solutions.}$</li>
+</ul>
+<p><strong>Remark)</strong> <br /></p>
+<ol>
+<li>$\text{If} \,\ \text{rank}(A) \neq \text{rank}([A \quad B]), \,\ \text{then} \,\ \nexists \,\ \text{solution of} \,\ A\mathbf{x} = \mathbf{b}$.</li>
+<li>$\text{If} \,\ \text{rank}(A) = \text{rank}([A \quad B]) = n, \,\ \text{then} \,\ \exists^1 \,\ \text{solution of} \,\ A\mathbf{x} = \mathbf{b}$.</li>
+<li>$\text{If} \,\ \text{rank}(A) = \text{rank}([A \quad B]) &lt; n, \,\ \text{then} \,\ \exists^\infty \,\ \text{solution of} \,\ A\mathbf{x} = \mathbf{b}$.</li>
+</ol>
+<p><strong>Proof.</strong> <br />
+Trivial.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Theorem.1.14.">Theorem.1.14.<a class="anchor-link" href="#Theorem.1.14."> </a></h5><p>$ m \times n $행렬 $A$에 대하여 만약 $m &lt; n$이면 동차연립일차방정식 $A\mathbf{x} = \mathbf{0}$는 무한히 많은 해를 가진다.</p>
+<p><strong>Proof.</strong> <br />
+Trivial.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Theorem.1.15.">Theorem.1.15.<a class="anchor-link" href="#Theorem.1.15."> </a></h5><p>$n$차 정방행렬 $A$를 계수행렬로 가지는 동차연립일차방정식 $A\mathbf{x} = \mathbf{0}$가 자명해가 아닌 해를 가질 필요충분조건은 $\text{rank}(A) &lt; n$이다.</p>
+<p><strong>Proof.</strong> <br />
+Trivial.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><a class="u-url" href="/blog/linear-algebra/2022/01/25/ch01-linear-equations-and-inverse-matrices.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Heesung Yang&#39;s note</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/ndo04343" target="_blank" title="ndo04343"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
