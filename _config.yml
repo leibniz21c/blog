@@ -6,8 +6,8 @@
 # https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
 # https://learnxinyminutes.com/docs/yaml/
 
-title: YANG
-description: Heesung Yang's blog
+title: YANG's note
+description: Heesung Yang's note
 github_username: ndo04343
 # you can comment the below line out if your repo name is not different than your baseurl
 github_repo: "blog"
@@ -43,7 +43,7 @@ minima:
     github: ndo04343
 
 # Set this to true to get LaTeX math equation support
-use_math: 
+use_math: true
 
 # Set this to true to display the summary of your blog post under your title on the Home page.
 show_description: false
@@ -72,9 +72,9 @@ include:
 # This specifies what badges are turned on by default for notebook posts.
 default_badges:
   github: true
-  binder: true
+  binder: false
   colab: true
-  deepnote: true
+  deepnote: false
 
 # Escape HTML in post descriptions
 html_escape:
