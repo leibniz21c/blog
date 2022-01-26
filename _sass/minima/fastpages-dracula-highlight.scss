@@ -40,7 +40,8 @@ $dt-green-light: rgb(172, 229, 145);
     background: #323443 !important;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    font-family: Menlo, Monaco, Consolas, "Lucida Console", Roboto, Ubuntu, monospace;
+    font-family: 'Times New Roman', Times, serif;
+    // Modified(2022.01.26) : default - font-family: Menlo, Monaco, Consolas, "Lucida Console", Roboto, Ubuntu, monospace;
     border-radius: 5px;
     font-size: 105%;
 }

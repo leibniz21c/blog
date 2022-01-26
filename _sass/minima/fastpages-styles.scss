@@ -24,7 +24,8 @@ img.emoji{
 .page-content {
         -webkit-font-smoothing: antialiased !important;
         text-rendering: optimizeLegibility !important;
-        font-family: "Segoe UI", SegoeUI, Roboto, "Segoe WP", "Helvetica Neue", "Helvetica", "Tahoma", "Arial", sans-serif !important;
+        font-family: 'Times New Roman', Times, serif;
+        //font-family: "Segoe UI", SegoeUI, Roboto, "Segoe WP", "Helvetica Neue", "Helvetica", "Tahoma", "Arial", sans-serif !important;
 }
 
 // make non-headings slightly lighter
@@ -77,7 +78,7 @@ li {
   }
   .post-meta-description {
     color: rgb(88, 88, 88);
-    font-size: 15px;
+    font-size: 18px; // Modified(2022.01.26) : default - 15px
     margin-top:.05rem !important;
     margin-bottom:.05rem !important;
   }
@@ -172,7 +173,7 @@ h6:hover .anchor-link {
 .js-search-results {padding-top: 0.2rem;}
 .search-results-list-item {padding-bottom: 1rem;}
 .search-results-list-item .search-result-title {
-  font-size: 16px;
+  font-size: 18px; // Modified(2022.01.26) : default - 16px
   color: #d9230f;
 }
 .search-result-rel-url {color: silver;}
