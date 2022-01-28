@@ -73,9 +73,6 @@
   
 
   
-  
-
-  
 
   
   
@@ -86,13 +83,20 @@
   
 
   
+
   
 
   
   
 
   
-      ,"page10": {
+  
+
+  
+  
+
+  
+      ,"page12": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://ndo04343.github.io/blog/robots.txt",
