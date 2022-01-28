@@ -185,19 +185,37 @@ Then the differential transformation $D$ is a linear transformation and it is ca
 $$
 \text{For} \,\ 0 \in V, \,\ D(0) = \mathbf{0} \in W. \qquad \cdots \,\ (1)
 $$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 $$
-\begin{align}
+\begin{aligned}
 \text{For} \,\ f, g \in V, \,\ D(f + g) &amp;= \nabla_\mathbf{x} (f + g) \\
                                         &amp;= \nabla_\mathbf{x} f + \nabla_\mathbf{x} g \\
                                         &amp;= D(f) + D(g) \qquad \cdots \,\ (2) \\
-\end{align}
-$$$$
-\begin{align}
+\end{aligned}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+$$
+\begin{aligned}
 \text{For} \,\ c \in \mathbb{R}, \,\ f \in V, \,\ D(cf) &amp;= \nabla_\mathbf{x} f \\
                                                         &amp;= c \nabla_\mathbf{x} f \\
                                                         &amp;= c D(f) \qquad \cdots \,\ (3) \\
-\end{align}
-$$$$
+\end{aligned}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+$$
 \therefore \,\ D \,\ \text{is a linear transformation} \quad (\because \,\ (1), \,\ (2), \,\ \text{and} \,\ (3)) \quad \blacksquare
 $$
 </div>
@@ -308,7 +326,7 @@ $$<p><strong>Proof.</strong> <br /></p>
 <h5 id="Application.1.1.">Application.1.1.<a class="anchor-link" href="#Application.1.1."> </a></h5><p>Solve a equation $\nabla_\mathbf{w} || \mathbf{X}_{m \times n} \mathbf{w}_{n \times 1} - \hat{\mathbf{y}}_{m \times 1} ||^2 = \mathbf{0} $</p>
 <p><strong>Solve.</strong> <br /></p>
 $$
-\begin{align}
+\begin{aligned}
 &amp;\nabla_\mathbf{w} (X\mathbf{w} - \hat{\mathbf{y}})^T (X\mathbf{w} - \hat{\mathbf{y}}) \\
 &amp;= \nabla_\mathbf{w} (\mathbf{w}^T X^T - \hat{\mathbf{y}}^T)^T (X\mathbf{w} - \hat{\mathbf{y}}) \\
 &amp;= \nabla_\mathbf{w} (\mathbf{w}^T X^T X \mathbf{w} - \mathbf{w}^T X^T \hat{\mathbf{y}} - \hat{\mathbf{y}}^T X \mathbf{w} + \hat{\mathbf{y}}^T \hat{\mathbf{y}}) \\
@@ -317,7 +335,7 @@ $$
 \,\ \\
 &amp;\qquad X^TX \mathbf{w} = X^T \hat{\mathbf{y}} \\
 &amp;\therefore \,\ \mathbf{w} = (X^TX)^{-1}X^T\hat{\mathbf{y}}
-\end{align}
+\end{aligned}
 $$<hr />
 
 </div>
