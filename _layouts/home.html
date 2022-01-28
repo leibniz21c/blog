@@ -3,12 +3,12 @@ layout: default
 ---
 
 <div class="home">
+
   {%- if page.title -%}
     <h1 class="page-heading">{{ page.title }}</h1>
   {%- endif -%}
 
   {{ content | markdownify }}
-
 
   {% if site.paginate %}
     {% assign rawposts = paginator.posts %}
@@ -28,7 +28,6 @@ layout: default
   {% assign grouped_posts = posts | group_by: "sticky_rank" | sort: "name", "last" %}
   {% assign sticky_posts = ''|split:'' %}
   {% assign non_sticky_posts = '' | split:'' %}
-
  
   {% for gp in grouped_posts %}
     {%- if gp.name == "" -%}
@@ -46,16 +45,20 @@ layout: default
     {%- if page.list_title -%}
       <h2 class="post-list-heading">{{ page.list_title }}</h2>
     {%- endif -%}
+
     <ul class="post-list">
       {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
       {%- for post in posts -%}
-      <li>
-        {%- if site.show_image -%}
-            {%- include post_list_image_card.html -%}
-        {% else %}
-            {%- include post_list.html -%}
-        {%- endif -%}
-      </li>
+        {% if post.categories contains "self-reflection" %}
+        {% else %}  
+          <li>
+            {%- if site.show_image -%}
+                {%- include post_list_image_card.html -%}
+            {% else %}
+                {%- include post_list.html -%}
+            {%- endif -%}
+          </li>
+        {% endif %}
       {%- endfor -%}
     </ul>
 
