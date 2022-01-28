@@ -1,30 +1,22 @@
 ---
-layout: categories
-permalink: /categories/
-title: Categories
+layout: self-reflection
+permalink: /self-reflection/
+title: Self-Reflection
 search_exclude: true
 ---
 
 {% if site.categories.size > 0 %}
-<h2>Contents</h2>
+<h2>Self-Reflection</h2>
 
   {% assign categories = "" | split:"" %}
   {% for c in site.categories %}
-    {% if c[0] != "report"
-          and c[0] != "self-reflection" %}
+    {% if c[0] == "self-reflection" %}
       {% assign categories = categories | push: c[0] %}
     {% endif %}
   {% endfor %}
   {% assign categories = categories | sort_natural %}
 
-  <ul>
   {% for category in categories %}
-    <li><a href="#{{ category }}">{{ category }}</a></li>
-  {% endfor %}
-  </ul>
-
-  {% for category in categories %}
-      <h3 id ="{{ category }}"><i class="fas fa-tags category-tags-icon"></i></i> {{ category }}</h3>
       <a name="{{ category | slugize }}"></a>
       {% for post in site.categories[category] %}
         {% if post.hide != true %}
