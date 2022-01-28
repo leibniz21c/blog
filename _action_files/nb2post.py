@@ -20,3 +20,19 @@ for original, new in warnings:
 ## apply monkey patches
 export2html._nb2htmlfname = _nb2htmlfname
 export2html.notebook2html(fname='_notebooks/*.ipynb', dest='_posts/', template_file='/fastpages/fastpages.tpl', execute=False)
+
+# TODO: Autometic encrypt pipelining
+# logic :
+#     with open("test-report.ipynb", "r") as f:
+#         tags = f.read()
+
+#     end_index = start_index = tags.find("\"- categories:") + 15
+#     while tags[end_index:end_index + 2] != "\\n": 
+#         end_index += 1
+#     tags = tags[start_index:end_index] 
+
+#     if "report" in tags:
+#         print(True)
+
+
+# TODO: Created post file is not 666 permission

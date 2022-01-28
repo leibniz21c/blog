@@ -11,7 +11,8 @@ search_exclude: true
   {% assign categories = "" | split:"" %}
   {% for c in site.categories %}
     {% if c[0] != "report"
-          and c[0] != "self-reflection" %}
+          and c[0] != "self-reflection"
+          and c[0] != "encrypted" %}
       {% assign categories = categories | push: c[0] %}
     {% endif %}
   {% endfor %}

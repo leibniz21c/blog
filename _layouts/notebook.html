@@ -2,4 +2,20 @@
 layout: post
 ---
 
-{{ content }}
+{% if page.categories contains "encrypted" %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+    <script type="text/javascript" src="{{ '/assets/js/aes-decoder.js' | relative_url }}"></script>
+    <script>
+        var key = prompt("Press the key", '');
+        if (key == null) {
+            alert("Access denied.");
+            document.write("Permission denied.");
+            history.back();
+        }
+        var encoded_content = "{{ content | strip_newlines }}".slice(3, -4);
+        decrypt(encoded_content, key);
+    </script>
+{% else %}
+    {{ content }}
+{% endif %}
+
