@@ -28,10 +28,46 @@ layout: notebook
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h5 id="Definition.3.1.-Symmetric-Matrix-and-Orthogonal-Matrix">Definition.3.1. Symmetric Matrix and Orthogonal Matrix<a class="anchor-link" href="#Definition.3.1.-Symmetric-Matrix-and-Orthogonal-Matrix"> </a></h5>$$
-\text{If} \,\ A^T = A \,\ \text{, then} \,\ A \,\ \text{is a symetric matrix.}
-$$$$
-\text{If} \,\ A^T = A^{-1} \,\ \text{, then} \,\ A \,\ \text{is an orthogonal matrix.}
+<h5 id="Definition.3.1.">Definition.3.1.<a class="anchor-link" href="#Definition.3.1."> </a></h5><p>$n \times n$ 대칭행렬 $A = [a_{ij}]$와 벡터 $\mathbf{x} = [x_1 \,\ x_2 \,\ \cdots \,\ x_n]^T \in \mathbb{R}^n$에 대해서</p>
+$$
+q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x} = \sum_{i = 1}^{n} \sum_{j = 1}^{n} a_{ij} x_i x_j
+$$<p>일 때, $A$를 $q(\mathbf{x})$의 계수행렬(coefficient matrix)이라고 하며 $q(\mathbf{x})$를 계수행렬이 $A$인 이차형식(quadratic form)이라고 하고, $x_1, \,\ x_2, \,\ \cdots , \,\ x_n $을 $q(\mathbf{x})$의 변수(variable)라고 하며 $\mathbf{x}$를 변수 벡터라고 한다.<br><br></p>
+<p><strong>Remark</strong></p>
+<ol>
+<li>$q(\mathbf{x}) = \mathbf{x}^\mathbf{x} A \mathbf{x} = &lt; \mathbf{x}, A\mathbf{x} &gt; = \sum_{i = 1}^n a_{ii}x_i^2 + 2\sum_{i \neq j} a_{ij} x_i x_j$</li>
+<li>$n$개의 실변수를 가지는 이차방정식은 다음과 같다.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+$$
+\begin{matrix}
+f(\mathbf{x}) = \sum_{i = 1}^n \sum_{j = 1}^n a_{ij}x_ix_j + \sum_{i = 1}^n b_ix_i + c = 0 \quad \text{or} \\
+f(\mathbf{x}) = \mathbf{x}^TA\mathbf{x} + \mathbf{b}^T \mathbf{x} + c = 0 \\
+\end{matrix}
+$$<p>위의 식에서 $\mathbf{b}^T \mathbf{x} = \sum_{i = 1}^n b_ix_i$를 $f(\mathbf{x})$의 일차형식(linear form)이라고 한다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ol>
+<li>$A$가 대칭행렬로 규정된 이유는 다음과 같다.</li>
+</ol>
+<p>만약 $A$가 정방행렬이라면, $A = S + T \quad \text{where} \,\ S \,\ \text{is a symetric matrix, and} \,\ T \,\ \text{is a skew-symetric matrix.}$<br>
+$$
+\begin{matrix}
+\mathbf{x}^TT\mathbf{x} &amp;= (\mathbf{x}^TT\mathbf{x})^T  \quad (\because \,\ \mathbf{x}^TT\mathbf{x} \in R) \\
+        &amp;= \mathbf{x}^TT^T\mathbf{x} \\
+        &amp;= - \mathbf{x}^TT\mathbf{x} \\
+\end{matrix} 
+$$</p>
+$$
+\therefore \quad q(\mathbf{x}) = \mathbf{x}^TA\mathbf{x} = \mathbf{x}^TS\mathbf{x}
 $$
 </div>
 </div>
