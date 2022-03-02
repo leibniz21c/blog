@@ -1,7 +1,7 @@
 ---
 keywords: fastai
 description: 2022.03.02 NDIR 연구 중간 보고
-title: "[NDIR] 연구 중간 보고
+title: "[NDIR] 연구 중간 보고"
 toc: false
 badges: false
 comments: false
